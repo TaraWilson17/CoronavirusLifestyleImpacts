@@ -12,16 +12,29 @@
 
 **Use Case 1:** User wants to understand a change in lifestyle trends relative to the onset of the COVID-19 pandemic.
 
-> Expected interations:
+> Expected interactions:
 * User: Inputs keyword of google trend of interest
 * User: Specifies what type of COVID data is desired (i.e. infections, deaths, recovered cases)
 * Tool: Joins worldwide google trend data with worldwide COVID data.
-* Tool: Data visualization generated for user
+* Tool: Data visualization generated for user(s)
 
 **Use Case 2:** User wants to compare multiple changes in lifestyle trends relative to the onset of the COVID-19 pandemic.
 
+> Expected interactions:
+* User: Inputs keywords (up to 5 as a list) of google trends of interest
+* User: Specifies what type of COVID data is desired (i.e. infections, deaths, recovered cases)
+* Tool: Joins worldwide google trend data with worldwide COVID data
+* Tool: Data visualization(s) generated for user
+
 **Use Case 3:** User wants to understand a change in lifestyle trends relative to the onset of the COVID-19 pandemic in their region.
 
+> Expected interactions:
+* User: Inputs keywords (up to 5 as a list) of google trends of interest
+* User: Specifies what type of COVID data is desired (i.e. infections, deaths, recovered cases)
+* User: Specifies what region (country) they would like COVID data for
+* User: Specifies what region (country) they would like google tren data for
+* Tool: Joins worldwide google trend data with worldwide COVID data
+* Tool: Data visualization generated for user(s)
 
 ### More specific examples
 * student using data viz for a project
