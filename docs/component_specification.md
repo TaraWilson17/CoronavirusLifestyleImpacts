@@ -1,7 +1,7 @@
 # Coronavirus Lifestyle Impacts
 
 ## Component Specification
-![Project.PNG](attachment:Project.PNG
+
 
 
 The Project contains the following components:
