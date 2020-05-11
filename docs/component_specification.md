@@ -2,7 +2,7 @@
 
 ## Component Specification
 
-
+![](Project.png)
 
 The Project contains the following components:
     1. Extraction
