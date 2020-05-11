@@ -1,10 +1,14 @@
 # Coronavirus Lifestyle Impacts Functional Specification
 
-"This should motivate what is being built and describes the use cases. This document should have at minimum two detailed use cases."
+*This should motivate what is being built and describes the use cases. This document should have at minimum two detailed use cases.*
 
 ## Background
 
+The COVID-19 Pandemic has led many unanticipated lifestyle changes, human behaviors, and product trends. What better way to tap in to some of these interesting pandemic-influenced lifestyle impacts than through our world's search history? This tool allows a user to choose a trend of their choosing (big cats, baking, home fitness equipment sales) and see how this Google search keyword has coincided with the COVID-19 pandemic. 
+
 ## User Profile
+
+Users of this tool are anyone who is interested about the impacts of coronavirus on various parts of our lives. No matter how big or small, comedic or serious. Users could be looking for fun, for business reasons, economic applications, or academic reasearch. This tool is for anyone who would benefit from a quick, easy, automatically generated visualization of google trends data relative to the onset of coronavirus.
 
 ## Data Sources
 
