@@ -13,6 +13,7 @@ class DataGenerator:
         print("Generating data...")
         self.covid_data, self.trend_data = self.get_data("Washington", ["Bars near me", "Home workouts"])
 
+    @staticmethod
     def get_data(state, keywords):
         """
         Gathers coronavirus data for a given state from the Bing Coronavirus
@@ -35,7 +36,6 @@ class DataGenerator:
         today = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
         one_year_ago = (datetime.now() - timedelta(days=366)).strftime("%Y-%m-%d")
         user_timeframe = one_year_ago + " " + today
-        print(user_timeframe)
         area_code = "en-US-" + state_abbr
         pytrend = TrendReq(hl=area_code, tz=480)
         pytrend.build_payload(kw_list=keywords, timeframe=user_timeframe)
