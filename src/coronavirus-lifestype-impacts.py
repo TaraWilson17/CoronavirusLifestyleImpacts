@@ -12,8 +12,11 @@ cmd_parser.parse()
 
 data_generator = DataGenerator(cmd_parser.args)
 data_generator.run()
+print("=========Sampling data========")
+print(data_generator.covid_data.head(5))
+print(data_generator.trend_data.head(5))
 
-data_frames = [data_generator.data_1, data_generator.data_2]
+data_frames = [data_generator.covid_data, data_generator.trend_data]
 data_processor = DataProcessor(cmd_parser.args, data_frames)
 data_processor.run()
 agg_data_frame = data_processor.agg_data_frame
