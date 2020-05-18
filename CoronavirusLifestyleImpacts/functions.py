@@ -1,4 +1,4 @@
-import pandas as pd     
+import pandas as pd
 import us
 from pytrends.request import TrendReq
 
@@ -19,7 +19,7 @@ def get_data(state, keywords):
     state_abbr = us.states.lookup(state).abbr
     url = "https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv"
     state_data = pd.read_csv(url)
-    covid_data = state_data[(state_data.AdminRegion1 == state) & 
+    covid_data = state_data[(state_data.AdminRegion1 == state) &
                             (state_data.AdminRegion2.isnull())]
     user_timeframe = "2019-05-11 2020-05-11"
     area_code = "en-US-" + state_abbr
@@ -27,3 +27,5 @@ def get_data(state, keywords):
     pytrend.build_payload(kw_list=keywords, timeframe=user_timeframe)
     trend_data = pytrend.interest_over_time()
     return(covid_data, trend_data)
+
+get_data("Washington", ["Bars near me", "Home workouts"])
