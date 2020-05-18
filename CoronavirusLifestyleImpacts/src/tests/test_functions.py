@@ -1,5 +1,5 @@
 import unittest
-import functions as func
+import data_generator
 
 class UnitTests(unittest.TestCase):
     
@@ -25,5 +25,5 @@ class UnitTests(unittest.TestCase):
 if __name__ == '__main__':
     state = "Washington"
     keywords = ["Bars near me", "Home workouts"]
-    covid_data, trend_data = func.get_data(state, keywords)
+    covid_data, trend_data = data_generator.get_data(state, keywords)
     unittest.main()

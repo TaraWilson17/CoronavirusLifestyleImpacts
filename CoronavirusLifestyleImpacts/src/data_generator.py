@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import pandas as pd
 import us
 from pytrends.request import TrendReq
@@ -12,7 +13,7 @@ class DataGenerator:
         print("Generating data...")
         self.covid_data, self.trend_data = self.get_data("Washington", ["Bars near me", "Home workouts"])
 
-    def get_data(self, state, keywords):
+    def get_data(state, keywords):
         """
         Gathers coronavirus data for a given state from the Bing Coronavirus
         data source as well as Google Trends data from the last year for
@@ -31,12 +32,15 @@ class DataGenerator:
         state_data = pd.read_csv(url)
         covid_data = state_data[(state_data.AdminRegion1 == state) &
                                 (state_data.AdminRegion2.isnull())]
-        user_timeframe = "2019-05-11 2020-05-11"
+        today = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        one_year_ago = (datetime.now() - timedelta(days=366)).strftime("%Y-%m-%d")
+        user_timeframe = one_year_ago + " " + today
+        print(user_timeframe)
         area_code = "en-US-" + state_abbr
         pytrend = TrendReq(hl=area_code, tz=480)
         pytrend.build_payload(kw_list=keywords, timeframe=user_timeframe)
         trend_data = pytrend.interest_over_time()
-        return (covid_data, trend_data)
+        return(covid_data, trend_data)
 
     def fetch_data_1(self, args):
         """
