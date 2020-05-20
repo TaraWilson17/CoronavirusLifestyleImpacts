@@ -38,11 +38,11 @@ There are two datasets used in this project:
     * Google Trends data is reported between 0 to 100, based on the relitive proportion of a keyword to all included in the search over time
     * Interest over time query contains the following columns:  
 
-    | Column header | Description |
-    | --- | --- |
-    | date | First day of the week for which the data represents |
-    | Trend keyword(s) | Trend keyword(s) you pass into the query, e.g. "Dogs for adoption" |
-    | isPartial | Boolean indicator of whether of not the full week of data for that trend is available yet |
+        | Column header | Description |
+        | --- | --- |
+        | date | First day of the week for which the data represents |
+        | Trend keyword(s) | Trend keyword(s) you pass into the query, e.g. "Dogs for adoption" |
+        | isPartial | Boolean indicator of whether of not the full week of data for that trend is available yet |
 
 ## Team Members  
 * David Wei  
