@@ -29,7 +29,9 @@ class DataGenerator:
             keywords and state over the past year, aggregated weekly
         """
         state_abbr = us.states.lookup(state).abbr
-        url = "https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv"
+        domain = "https://raw.githubusercontent.com/microsoft"
+        covid_project = "/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv"
+        url = domain + covid_project
         state_data = pd.read_csv(url)
         covid_data = state_data[(state_data.AdminRegion1 == state) &
                                 (state_data.AdminRegion2.isnull())]
