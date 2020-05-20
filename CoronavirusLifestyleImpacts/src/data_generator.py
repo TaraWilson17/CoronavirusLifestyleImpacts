@@ -11,10 +11,9 @@ class DataGenerator:
 
     def run(self):
         print("Generating data...")
-        self.covid_data, self.trend_data = self.get_data("Washington", ["Bars near me", "Home workouts"])
+        self.get_data("Washington", ["Bars near me", "Home workouts"])
 
-    @staticmethod
-    def get_data(state, keywords):
+    def get_data(self, state, keywords):
         """
         Gathers coronavirus data for a given state from the Bing Coronavirus
         data source as well as Google Trends data from the last year for
@@ -42,25 +41,5 @@ class DataGenerator:
         pytrend = TrendReq(hl=area_code, tz=480)
         pytrend.build_payload(kw_list=keywords, timeframe=user_timeframe)
         trend_data = pytrend.interest_over_time()
-        return(covid_data, trend_data)
-
-    def fetch_data_1(self, args):
-        """
-        Used to fetch from data source 1
-        """
-        #self.build_request_1(args)
-        return "My fetched data"
-
-    def fetch_data_2(self, args):
-        """
-        Used to fetch from data source 2
-        """
-        #self.build_request_2(args)
-        pass
-
-    # Helpers
-    def build_request_1(self, args):
-        pass
-
-    def build_request_2(self, args):
-        pass
+        self.covid_data = covid_data
+        self.trend_data = trend_data
