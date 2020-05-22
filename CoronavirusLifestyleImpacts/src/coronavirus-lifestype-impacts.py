@@ -12,14 +12,19 @@ cmd_parser.parse()
 
 data_generator = DataGenerator(cmd_parser.args)
 data_generator.run()
-print("=========Sampling data========")
+print("\n=========Sampling data========")
 print(data_generator.covid_data.head(5))
 print(data_generator.trend_data.head(5))
 
 data_frames = [data_generator.covid_data, data_generator.trend_data]
+
+
 data_processor = DataProcessor(cmd_parser.args, data_frames)
 data_processor.run()
+print("\nProcessed COVID Data columns\n", data_processor.clean_data_frame[0].columns)
+print("\nProcessed GoogleTrends Data columns\n", data_processor.clean_data_frame[1].columns)
 agg_data_frame = data_processor.agg_data_frame
+
 
 data_visualizer = DataVisualizer(agg_data_frame)
 data_visualizer.show()
