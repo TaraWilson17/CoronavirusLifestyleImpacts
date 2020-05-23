@@ -5,8 +5,9 @@ and retrieving of the Coronavirus and PyTrends data for the
 CoronavirusLifestyleImpacts package.
 """
 
+from context import coronavirus_lifestyle_impacts
 import unittest
-from data_generator import DataGenerator
+from coronavirus_lifestyle_impacts.data_generator import DataGenerator
 
 class UnitTests(unittest.TestCase):
     """
