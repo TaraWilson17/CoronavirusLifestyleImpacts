@@ -50,3 +50,6 @@ There are two datasets used in this project:
 * Ratna Chembrolu   
 * Tara Wilson  
 * Zack Garcia  
+
+## References
+- [How to setup Travis CI](https://github.com/dacb/codebase)
