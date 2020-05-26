@@ -28,6 +28,11 @@ class DataProcessor:
         pass
 
     def aggregate_data(self, data_1 = None, data_2 = None, schema = None):
+        covid = self.clean_data_frame[0]
+        trend = self.clean_data_frame[1]
+        agg = covid.join(trend, how='outer')
+        self.agg_data_frame = agg
+        
         pass
 
     # More data processing
