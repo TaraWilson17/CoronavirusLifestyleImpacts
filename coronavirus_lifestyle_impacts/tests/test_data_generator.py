@@ -5,8 +5,9 @@ and retrieving of the Coronavirus and PyTrends data for the
 CoronavirusLifestyleImpacts package.
 """
 
+from context import coronavirus_lifestyle_impacts
 import unittest
-from data_generator import DataGenerator
+from coronavirus_lifestyle_impacts.data_generator import DataGenerator
 
 class UnitTests(unittest.TestCase):
     """
@@ -14,17 +15,23 @@ class UnitTests(unittest.TestCase):
     a series of tests validating the DataGenerator class.
     """
 
+    def setUp(self):
+        self.state = "Washington"
+        self.keywords = ["Bars near me", "Home workouts"]
+        self.data_generator = DataGenerator(None)
+        self.data_generator.get_data(self.state, self.keywords)
+
     def test_covid_data_is_not_empty(self):
         """
         Asserts that the Coronavirus dataframe is not empty.
         """
-        self.assertFalse(DG.covid_data.empty)
+        self.assertFalse(self.data_generator.covid_data.empty)
 
     def test_trend_data_is_not_empty(self):
         """
         Asserts that the PyTrends dataframe is not empty.
         """
-        self.assertFalse(DG.trend_data.empty)
+        self.assertFalse(self.data_generator.trend_data.empty)
 
     def test_trend_data_has_expected_columns(self):
         """
@@ -32,16 +39,17 @@ class UnitTests(unittest.TestCase):
         keyword as well as a column for `isPartial` which denotes if the
         data for a given week is completed or not.
         """
-        expected_columns = KEYWORDS + ["isPartial"]
-        self.assertCountEqual(list(DG.trend_data.columns), expected_columns)
+        expected_columns = self.keywords + ["isPartial"]
+        self.assertCountEqual(list(self.data_generator.trend_data.columns),\
+                expected_columns)
 
     def test_covid_data_is_for_correct_state(self):
         """
         Asserts that the data in the Coronavirus dataframe has been filtered
         to only include data from the specified state.
         """
-        state_col = list(DG.covid_data.AdminRegion1)
-        self.assertListEqual(state_col, [STATE] * len(state_col))
+        state_col = list(self.data_generator.covid_data.AdminRegion1)
+        self.assertListEqual(state_col, [self.state] * len(state_col))
 
     def test_covid_data_contains_needed_columns(self):
         """
@@ -52,12 +60,8 @@ class UnitTests(unittest.TestCase):
         state.
         """
         expected_columns = ["Updated", "Deaths", "Recovered", "AdminRegion1"]
-        self.assertTrue(all(x in list(DG.covid_data.columns) for x in expected_columns))
-
+        self.assertTrue(all(x in list(self.data_generator.covid_data.columns)\
+                for x in expected_columns))
 
 if __name__ == '__main__':
-    STATE = "Washington"
-    KEYWORDS = ["Bars near me", "Home workouts"]
-    DG = DataGenerator([STATE, KEYWORDS])
-    DG.run()
     unittest.main()
