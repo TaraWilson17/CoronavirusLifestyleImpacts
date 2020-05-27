@@ -33,6 +33,10 @@ class DataProcessor:
         self.agg_data_frame = None
 
     def run(self):
+        """
+        This function executes all the other functions in this module to
+        accomplish the data cleaning steps.
+        """
         print("Processing data...")
         self.clean_data(self.input_data_frames)
         self.aggregate_data()
@@ -49,9 +53,11 @@ class DataProcessor:
             - clean_data_frame: An array of the two dataframes post-cleaning
             with the first being covid data and the second being trend data
         """
+        # Variable Assignment
         covid = data_frames[0]
         trend = data_frames[1]
 
+        # Clean up covid columns
         covid = covid.drop(columns=['ID', 'Latitude', 'Longitude', 'ISO2',
                                     'ISO3', 'AdminRegion2'])
         covid = covid.rename(columns={'Updated': 'Date',
@@ -61,11 +67,12 @@ class DataProcessor:
         covid = covid.reset_index(drop=True)
         covid = covid.set_index(['Date'], drop=True)
 
+        # Clean up trend columns
         trend = trend.drop(columns='isPartial')
 
         self.clean_data_frame = [covid, trend]
 
-    def aggregate_data(self, data_1=None, data_2=None, schema=None):
+    def aggregate_data(self):
         """
         This function combines the two data sets in a join on the two
         dataframes. Then it cleans this larger data frame, addressing
@@ -77,8 +84,11 @@ class DataProcessor:
             needed for visualization combined in to one ddata frame
         """
 
+        # Variable Assignments
         covid = self.clean_data_frame[0]
         trend = self.clean_data_frame[1]
+
+        # Join and update indices
         agg = covid.join(trend, how='outer')
         agg.reset_index(inplace=True)
         agg = agg.rename(columns={'index': 'Date'})
