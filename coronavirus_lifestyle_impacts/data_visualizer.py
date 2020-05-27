@@ -2,14 +2,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 class DataVisualizer:
-    def __init__(self, data_frame):
-        self.data_frame = data_frame
+    def __init__(self, state, keywords, all_data):
+        self.state = state
+        self.keywords = keywords
+        self.all_data = all_data
 
     def show(self):
         print("Rendering visualization...")
-        self.draw_graph(self.data_frame)
+        self.draw_graph()
 
-    def draw_graph(self, data_frame):
+    def draw_graph(self):
         
         N = 50
         x = np.random.rand(N)
