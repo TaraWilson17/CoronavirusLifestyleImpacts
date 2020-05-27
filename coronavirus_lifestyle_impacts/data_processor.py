@@ -94,8 +94,10 @@ class DataProcessor:
         agg = agg.rename(columns={'index': 'Date'})
 
         # Forward Fill in non-existent values for google trends
-        agg['Bars near me'].fillna(method='ffill', inplace=True)
-        agg['Home workouts'].fillna(method='ffill', inplace=True)
+        # Based on keyword arguments
+        number_of_keywords = len(self.args)
+        for i in range(number_of_keywords):
+            agg[self.args[i]].fillna(method='ffill', inplace=True)
 
         # Forward Fill missing covid data with values
         agg.iloc[0, agg.columns.get_loc('Confirmed')] = 0

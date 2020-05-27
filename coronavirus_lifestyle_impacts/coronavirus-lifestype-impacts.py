@@ -19,7 +19,7 @@ print(data_generator.trend_data.head(5))
 data_frames = [data_generator.covid_data, data_generator.trend_data]
 
 
-data_processor = DataProcessor(cmd_parser.args, data_frames)
+data_processor = DataProcessor(data_generator.keywords, data_frames)
 data_processor.run()
 print("\nProcessed COVID Data columns\n", data_processor.clean_data_frame[0].columns)
 print("\nProcessed GoogleTrends Data columns\n", data_processor.clean_data_frame[1].columns)
