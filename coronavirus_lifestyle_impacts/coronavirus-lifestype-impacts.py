@@ -10,7 +10,7 @@ from data_visualizer import DataVisualizer
 cmd_parser = CmdParser()
 cmd_parser.parse()
 
-data_generator = DataGenerator(cmd_parser.args)
+data_generator = DataGenerator("Washington", ["Bars near me", "Home workouts"])
 data_generator.run()
 print("\n=========Sampling data========")
 print(data_generator.covid_data.head(5))
