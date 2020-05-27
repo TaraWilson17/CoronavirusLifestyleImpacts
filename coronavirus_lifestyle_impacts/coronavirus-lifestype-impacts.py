@@ -24,6 +24,7 @@ data_processor.run()
 print("\nProcessed COVID Data columns\n", data_processor.clean_data_frame[0].columns)
 print("\nProcessed GoogleTrends Data columns\n", data_processor.clean_data_frame[1].columns)
 agg_data_frame = data_processor.agg_data_frame
+agg_data_frame.to_csv('agg_data_frame.csv')
 
 
 data_visualizer = DataVisualizer(agg_data_frame)
