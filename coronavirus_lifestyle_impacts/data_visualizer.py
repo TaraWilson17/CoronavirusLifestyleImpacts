@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from datetime import datetime
 
 class DataVisualizer:
     def __init__(self, state, keywords, all_data):
@@ -14,19 +15,32 @@ class DataVisualizer:
     def draw_graph(self):
         #'Date', 'Confirmed', 'ConfirmedChange', 'Deaths', 'DeathsChange', 'Recovered', 'RecoveredChange', 'Country', 'State', 'Bars near me', 'Home workouts']
         
-        fig, ax1 = plt.subplots(figsize=(12,8))
+        fig, ax = plt.subplots(figsize=(12,8))
         plt.title("Keyword Search Comparison in " + self.state)
-        ax1.set_ylabel("Relative Popularity", color="blue")
+        ax.set_ylabel("Relative Popularity")
         
         for keyword in self.keywords:
-            ax1.plot(self.df.Date, self.df[keyword], "--", c="blue", label="Searches for " + keyword)
+            ax.plot(self.df.Date, self.df[keyword], label="Searches for " + keyword)
         
-        ax1.tick_params(axis='y', labelcolor="blue")
-        ax2 = ax1.twinx()
-        ax2.set_ylabel("Coronavirus cases", color="red")
-        ax2.plot(self.df.Date, self.df.Confirmed, c="red")
-        ax2.tick_params(axis='y', labelcolor="red")
-        ax1.legend()
+        ax.tick_params(axis='y')
+        
+        date_first_case = min(self.df[self.df.Confirmed >= 1]["Date"])
+        ax.axvline(date_first_case, c="black")
+        plt.text(x=date_first_case,y=10, s="First case")
+        
+        date_100_cases = min(self.df[self.df.Confirmed >= 100]["Date"])
+        ax.axvline(date_100_cases, c="black")
+        plt.text(x=date_100_cases,y=30, s="100\ncases")
+        
+        date_1000_cases = min(self.df[self.df.Confirmed >= 1000]["Date"])
+        ax.axvline(date_1000_cases, c="black")
+        plt.text(x=date_1000_cases,y=50, s="1,000\ncases")
+        
+        date_10000_cases = min(self.df[self.df.Confirmed >= 10000]["Date"])
+        ax.axvline(date_10000_cases, c="black")
+        plt.text(x=date_10000_cases,y=70, s="10,000\ncases")
+        
+        ax.legend()
         
         file_name = self.state + "_coronavirus_trend_impacts.png"
         plt.savefig(file_name)
