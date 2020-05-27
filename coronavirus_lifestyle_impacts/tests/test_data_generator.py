@@ -18,8 +18,8 @@ class UnitTests(unittest.TestCase):
     def setUp(self):
         self.state = "Washington"
         self.keywords = ["Bars near me", "Home workouts"]
-        self.data_generator = DataGenerator(None)
-        self.data_generator.get_data(self.state, self.keywords)
+        self.data_generator = DataGenerator(self.state, self.keywords)
+        self.data_generator.get_data()
 
     def test_covid_data_is_not_empty(self):
         """
