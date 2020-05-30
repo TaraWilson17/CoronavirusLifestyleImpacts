@@ -5,10 +5,14 @@ downstream services. It is lightweight and should always return a response to
 the end user.
 """
 
-import json
-import argparse, re, us
+import argparse
+import us
 
 class CmdParser:
+    """
+    CmdParser class which contains logic to take command line arguments, parse
+    based on restrictions, and validate the parsed values.
+    """
     STATE = "state"
     KEYWORDS = "keywords"
     DEFAULT_KEYWORDS = "Bars near me, Home workouts"
@@ -41,15 +45,14 @@ class CmdParser:
         --state: a list of US state names
         --keywords: a list of lifestyle related keywords, delimited by comma
         """
-        parser = argparse.ArgumentParser(description = self.CLI_DESCRIPTION)
-        parser.add_argument("-s", "--" + self.STATE, action = "store",
-                default = "WA", required = False,
-                help = "the US state to pull the data from. Can take either \
-                        full name and abbreviation. Default: \"Washington\"")
-        parser.add_argument("-k", "--" + self.KEYWORDS, action = "store",
-                default = self.DEFAULT_KEYWORDS, required = False,
-                help = "the comma delimited search keyword string. \
-                        Default: \"Bars near me, Home workouts\" ")
+        parser = argparse.ArgumentParser(description=self.CLI_DESCRIPTION)
+        parser.add_argument("-s", "--" + self.STATE, action="store", default="WA",
+            required=False, help="the US state to pull the data from. Can take\
+                    either full name and abbreviation. Default: \"Washington\"")
+        parser.add_argument("-k", "--" + self.KEYWORDS, action="store",
+                default=self.DEFAULT_KEYWORDS, required=False,
+                help="the comma delimited search keyword string. Default: \
+                        \"Bars near me, Home workouts\" ")
         return parser
 
     def validate_args(self, args):
@@ -70,5 +73,5 @@ class CmdParser:
             self.keywords = keywords_string.split(",")
             for i, keyword in enumerate(self.keywords):
                 self.keywords[i] = keyword.strip()
-        except Exception as e:
-            raise ValueError("Encountered argument validation error: {}".format(e))
+        except Exception as error:
+            raise ValueError("Encountered argument validation error: {}".format(error))
