@@ -2,7 +2,7 @@
 
 At current package root, run the following executable:
 ```
-coronavirus-lifestyle-impacts.py [-h] [-s STATE] [-k KEYWORDS]
+./coronavirus-lifestyle-impacts.py [-h] [-s STATE] [-k KEYWORDS]
 ```
 
 ### Usage
