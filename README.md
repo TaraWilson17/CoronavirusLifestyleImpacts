@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/TaraWilson17/CoronavirusLifestyleImpacts.svg?branch=master)](https://travis-ci.org/TaraWilson17/CoronavirusLifestyleImpacts)
 
+[![Coverage Status](https://coveralls.io/repos/github/TaraWilson17/CoronavirusLifestyleImpacts/badge.svg?branch=master)](https://coveralls.io/github/TaraWilson17/CoronavirusLifestyleImpacts?branch=master)
+
 This is the final project for Data 515 at the University of Washington, Spring 2020.  
 
 This project is designed to help users view how lifestyles have been influenced by the 2019 novel coronavirus using Google Trends data. The tool allows people to input geographical locations and keywords to have visualizations and summary statistics generated to summarize the impact.    
