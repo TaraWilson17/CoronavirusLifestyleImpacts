@@ -13,17 +13,23 @@ branches:
 
 # list of commands to run to setup the environment
 install:
+    - pip install coverage
+    - pip install coveralls
     - pip install -r requirements.txt
 
 
+# Uncomment me to add preprocessing steps
 # a list of commands to run before the main script
 #before_script:
 #    - "do something"
 
 # the actual commands to run
 script:
+    # This step runs all unit tests and produce test results
     - pytest coronavirus_lifestyle_impacts/tests/
+    # This step runs coverage on all the code executed by the main script
+    - coverage run coronavirus_lifestyle_impacts/coronavirus-lifestyle-impacts.py
 
-#after_success:
-#    - coverage report
-#    - coveralls
+after_success:
+    - coverage report
+    - coveralls
