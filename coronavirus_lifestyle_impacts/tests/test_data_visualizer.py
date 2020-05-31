@@ -26,7 +26,7 @@ class UnitTests(unittest.TestCase):
         self.data_processor.run()
         
     def test_visualization_generated(self):
-        filepath = "/home/travis/build/TaraWilson17/CoronavirusLifestyleImpacts/coronavirus_lifestyle_impacts/" + self.state + "_coronavirus_trend_impacts_lines.png"
+        filepath = "../" + self.state + "_coronavirus_trend_impacts_lines.png"
         self.assertTrue(os.path.isfile(filepath))
 
 if __name__ == '__main__':
