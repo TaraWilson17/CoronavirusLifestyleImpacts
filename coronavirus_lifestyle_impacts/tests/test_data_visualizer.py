@@ -22,7 +22,7 @@ class UnitTests(unittest.TestCase):
         self.keywords = ["Bars near me", "Home workouts"]
         self.dg = DataGenerator(self.state, self.keywords)
         self.dg.get_data()
-        self.data_processor = DataProcessor(data_frames=[self.dg.covid_data, self.dg.trend_data])
+        self.data_processor = DataProcessor(self.dg.keywords, data_frames=[self.dg.covid_data, self.dg.trend_data])
         self.data_processor.run()
         
     def test_visualization_generated(self):
