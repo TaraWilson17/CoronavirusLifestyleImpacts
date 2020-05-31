@@ -8,6 +8,7 @@ another module for data visualization.
 
 from context import coronavirus_lifestyle_impacts
 import unittest
+from coronavirus_lifestyle_impacts.data_generator import DataGenerator
 from coronavirus_lifestyle_impacts.data_processor import DataProcessor
 
 class UnitTests(unittest.TestCase):

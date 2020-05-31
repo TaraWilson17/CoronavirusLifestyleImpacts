@@ -1,0 +1,13 @@
+[report]
+omit =  
+    # omit anything in a .local directory anywhere
+    */.local/*
+    */site-packages/*
+    # omit everything in /usr
+    /usr/*
+    */python?.?/*
+    */site-packages/nose/*
+    *__init__*
+    *.csv
+exclude_lines =
+    if __name__ == .__main__.:

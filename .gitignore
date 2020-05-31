@@ -128,3 +128,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Metadata files
+coronavirus_lifestyle_impacts/*.csv
+coronavirus_lifestyle_impacts/*.png
