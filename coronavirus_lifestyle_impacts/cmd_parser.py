@@ -46,7 +46,7 @@ class CmdParser:
         --keywords: a list of lifestyle related keywords, delimited by comma
         """
         parser = argparse.ArgumentParser(description=self.CLI_DESCRIPTION)
-        parser.add_argument("-s", "--" + self.STATE, action="store", default="WA",
+        parser.add_argument("-s", "--" + self.STATE, action="store", default="Washington",
             required=False, help="the US state to pull the data from. Can take\
                     either full name and abbreviation. Default: \"Washington\"")
         parser.add_argument("-k", "--" + self.KEYWORDS, action="store",
@@ -68,7 +68,7 @@ class CmdParser:
         Throws: ValueError if input arguments contains invalid state values
         """
         try:
-            self.state = us.states.lookup(args.state).abbr
+            self.state = args.state
             keywords_string = args.keywords.strip()
             self.keywords = keywords_string.split(",")
             for i, keyword in enumerate(self.keywords):

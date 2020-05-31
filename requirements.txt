@@ -2,3 +2,5 @@ pandas
 pytrends
 us
 matplotlib
+colour
+datetime
