@@ -29,13 +29,17 @@ class DataVisualizer:
         case = 1
         color_index = 0
         y_pos = 10
+        size = 10
         while case <= max(self.df.Confirmed):
             date_cases_reached = min(self.df[self.df.Confirmed >= case]["Date"])
-            ax.axvline(date_cases_reached, c=colors[color_index], linewidth=.75)
-            plt.text(x=date_cases_reached + timedelta(days=3), y=y_pos, s="Case " + str(case), backgroundcolor="white")
+            k1_value = self.df[self.df["Date"] == date_cases_reached]["Bars near me"]
+            k2_value = self.df[self.df["Date"] == date_cases_reached]["Home workouts"]
+            ax.plot(date_cases_reached, k1_value, marker="X", markersize=size, c=colors[color_index])
+            ax.plot(date_cases_reached, k2_value, marker="X", markersize=size, c=colors[color_index], label="Case " + str(case))
             y_pos += 20
             color_index += 1
             case *= 10
+            size += 2
 
         ax.legend()
 
