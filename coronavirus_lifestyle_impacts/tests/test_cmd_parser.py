@@ -37,9 +37,9 @@ class UnitTests(unittest.TestCase):
         and constructs keyword lists without whitespaces.
         """
         args = self.parser.parse_args(['--keywords', '  Dogs, Cats, Birds  ',
-                '--state', 'minnesota'])
+                '--state', 'Minnesota'])
         self.cmd_parser.validate_args(args)
-        self.assertEqual(self.cmd_parser.state, "MN")
+        self.assertEqual(self.cmd_parser.state, "Minnesota")
         self.assertEqual(self.cmd_parser.keywords, ['Dogs', 'Cats', 'Birds'])
 
 if __name__ == '__main__':
