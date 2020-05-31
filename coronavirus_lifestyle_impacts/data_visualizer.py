@@ -22,17 +22,17 @@ class DataVisualizer:
         ax.tick_params(axis='y')
 
         for keyword in self.keywords:
-            ax.plot(self.df.Date, self.df[keyword], "--", label="Searches for " + keyword)
+            ax.plot(self.df.Date, self.df[keyword], "-", label="Searches for " + keyword)
 
         colors = ["lightgray", "silver", "darkgray", "gray", "dimgray", "black"]
-            
+
         case = 1
         color_index = 0
         y_pos = 10
         while case <= max(self.df.Confirmed):
             date_cases_reached = min(self.df[self.df.Confirmed >= case]["Date"])
-            ax.axvline(date_cases_reached, c=colors[color_index])
-            plt.text(x=date_cases_reached + timedelta(days=2), y=y_pos, s="Case " + str(case), backgroundcolor="white")
+            ax.axvline(date_cases_reached, c=colors[color_index], linewidth=.75)
+            plt.text(x=date_cases_reached + timedelta(days=3), y=y_pos, s="Case " + str(case), backgroundcolor="white")
             y_pos += 20
             color_index += 1
             case *= 10
