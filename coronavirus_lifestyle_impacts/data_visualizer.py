@@ -22,7 +22,7 @@ class DataVisualizer:
         ax.tick_params(axis='y')
 
         for keyword in self.keywords:
-            ax.plot(self.df.Date, self.df[keyword], "-", label="Searches for " + keyword)
+            ax.plot(self.df["Date"], self.df[keyword], "-", label="Searches for " + keyword)
 
         colors = ["lightgray", "silver", "darkgray", "gray", "dimgray", "black"]
 
