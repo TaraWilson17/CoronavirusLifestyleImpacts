@@ -4,9 +4,10 @@ import us
 from pytrends.request import TrendReq
 
 class DataGenerator:
-    def __init__(self, state, keywords):
+    def __init__(self, state, keywords, days=366):
         self.state = state
         self.keywords = keywords
+        self.days = days
         self.covid_data = None
         self.trend_data = None
 
@@ -35,9 +36,9 @@ class DataGenerator:
         state_data = pd.read_csv(url)
         covid_data = state_data[(state_data.AdminRegion1 == self.state) &
                                 (state_data.AdminRegion2.isnull())]
-        today = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-        one_year_ago = (datetime.now() - timedelta(days=366)).strftime("%Y-%m-%d")
-        user_timeframe = one_year_ago + " " + today
+        end_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        start_date = (datetime.now() - timedelta(days=self.days)).strftime("%Y-%m-%d")
+        user_timeframe = start_date + " " + end_date
         area_code = "en-US-" + state_abbr
         pytrend = TrendReq(hl=area_code, tz=480)
         pytrend.build_payload(kw_list=self.keywords, timeframe=user_timeframe)

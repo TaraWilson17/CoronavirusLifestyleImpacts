@@ -1,21 +1,47 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from datetime import datetime
+from datetime import timedelta
+from colour import Color
 
 class DataVisualizer:
-    def __init__(self, data_frame):
-        self.data_frame = data_frame
+    def __init__(self, state, keywords, all_data):
+        self.state = state
+        self.keywords = keywords
+        self.df = all_data
 
     def show(self):
         print("Rendering visualization...")
-        self.draw_graph(self.data_frame)
+        self.draw_graph()
 
-    def draw_graph(self, data_frame):
+    def draw_graph(self):
         
-        N = 50
-        x = np.random.rand(N)
-        y = np.random.rand(N)
-        colors = np.random.rand(N)
-        area = (30 * np.random.rand(N))**2 
+        fig, ax = plt.subplots(figsize=(12,8))
+        plt.title("Keyword Search Comparison in " + self.state)
+        ax.set_ylabel("Relative Popularity")
+        ax.tick_params(axis='y')
 
-        plt.scatter(x, y, s=area, c=colors, alpha=0.5)
-        plt.savefig("test_image.png")
+        for keyword in self.keywords:
+            ax.plot(self.df["Date"], self.df[keyword], "-", label="Searches for " + keyword)
+
+        colors = ["lightgray", "silver", "darkgray", "gray", "dimgray", "black"]
+
+        case = 1
+        color_index = 0
+        y_pos = 10
+        size = 10
+        while case <= max(self.df.Confirmed):
+            date_cases_reached = min(self.df[self.df.Confirmed >= case]["Date"])
+            k1_value = self.df[self.df["Date"] == date_cases_reached]["Bars near me"]
+            k2_value = self.df[self.df["Date"] == date_cases_reached]["Home workouts"]
+            ax.plot(date_cases_reached, k1_value, marker="X", markersize=size, c=colors[color_index])
+            ax.plot(date_cases_reached, k2_value, marker="X", markersize=size, c=colors[color_index], label="Case " + str(case))
+            y_pos += 20
+            color_index += 1
+            case *= 10
+            size += 2
+
+        ax.legend()
+
+        file_name = self.state + "_coronavirus_trend_impacts.png"
+        plt.savefig(file_name)

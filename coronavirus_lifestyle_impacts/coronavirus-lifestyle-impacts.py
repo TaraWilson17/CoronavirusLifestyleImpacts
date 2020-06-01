@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 from cmd_parser import CmdParser
 from data_generator import DataGenerator
 from data_processor import DataProcessor
@@ -8,16 +9,16 @@ from data_visualizer import DataVisualizer
 # This is the entry point of our tool
 
 cmd_parser = CmdParser()
-cmd_parser.parse()
+cmd_parser.parse(sys.argv[1:])
+print("Using input: {}, {}".format(cmd_parser.state, cmd_parser.keywords))
 
-data_generator = DataGenerator("Washington", ["Bars near me", "Home workouts"])
+data_generator = DataGenerator(cmd_parser.state, cmd_parser.keywords)
 data_generator.run()
 print("\n=========Sampling data========")
 print(data_generator.covid_data.head(5))
 print(data_generator.trend_data.head(5))
 
 data_frames = [data_generator.covid_data, data_generator.trend_data]
-
 
 data_processor = DataProcessor(data_generator.keywords, data_frames)
 data_processor.run()
@@ -28,5 +29,5 @@ agg_data_frame.to_csv('agg_data_frame.csv')
 print("\nAggregated cleaned dataframe saved as agg_data_frame.csv\n")
 
 
-data_visualizer = DataVisualizer(agg_data_frame)
+data_visualizer = DataVisualizer(data_generator.state, data_generator.keywords, data_processor.agg_data_frame)
 data_visualizer.show()
