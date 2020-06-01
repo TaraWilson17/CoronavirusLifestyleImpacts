@@ -1,28 +1,53 @@
+"""
+Purpose:
+The following module is the DataVisualizer. It is responsible for
+generating a data visualization using the coronavirus and pytrends
+data resulting from the DataProcessor class.
+
+Date: 5/31/2020
+
+Author: Tara Wilson
+"""
+
 import matplotlib.pyplot as plt
-import numpy as np
-from datetime import datetime
-from datetime import timedelta
-from colour import Color
 
 class DataVisualizer:
+    """
+    The DataVisualizer class is used to create a visualization of the
+    data aggregated by the Data Processor. It has the following attributes:
+
+    state: the state for which the Coronavirus and Google Trends data is referencing
+    keywords: the keyword(s) for which the the Google Trends data is for
+    all_data: a dataframe containing all of the Coronavirus and Google Trends data
+        for the specified state and keywords
+    """
     def __init__(self, state, keywords, all_data):
         self.state = state
         self.keywords = keywords
-        self.df = all_data
+        self.data = all_data
 
     def show(self):
+        """
+        Calls for the visualization to be created.
+        """
         print("Rendering visualization...")
         self.draw_graph()
 
     def draw_graph(self):
-        
-        fig, ax = plt.subplots(figsize=(12,8))
+        """
+        Creates a png containing a visualization of the data. Marks Google
+        Trend relative popularity index on the y-axis and date on the x-axis.
+        Counts of Coronavirus cases are indicated on the trend lines. The figure
+        is saved in the coronavirus_lifestyle_impacts folder with the state name
+        in the image title.
+        """
+        fig, axis = plt.subplots(figsize=(12, 8))
         plt.title("Keyword Search Comparison in " + self.state)
-        ax.set_ylabel("Relative Popularity")
-        ax.tick_params(axis='y')
+        axis.set_ylabel("Relative Popularity")
+        axis.tick_params(axis='y')
 
         for keyword in self.keywords:
-            ax.plot(self.df["Date"], self.df[keyword], "-", label="Searches for " + keyword)
+            axis.plot(self.data["Date"], self.data[keyword], "-", label="Searches for " + keyword)
 
         colors = ["lightgray", "silver", "darkgray", "gray", "dimgray", "black"]
 
@@ -30,18 +55,20 @@ class DataVisualizer:
         color_index = 0
         y_pos = 10
         size = 10
-        while case <= max(self.df.Confirmed):
-            date_cases_reached = min(self.df[self.df.Confirmed >= case]["Date"])
-            k1_value = self.df[self.df["Date"] == date_cases_reached]["Bars near me"]
-            k2_value = self.df[self.df["Date"] == date_cases_reached]["Home workouts"]
-            ax.plot(date_cases_reached, k1_value, marker="X", markersize=size, c=colors[color_index])
-            ax.plot(date_cases_reached, k2_value, marker="X", markersize=size, c=colors[color_index], label="Case " + str(case))
+        while case <= max(self.data.Confirmed):
+            date_cases_reached = min(self.data[self.data.Confirmed >= case]["Date"])
+            k1_value = self.data[self.data["Date"] == date_cases_reached]["Bars near me"]
+            k2_value = self.data[self.data["Date"] == date_cases_reached]["Home workouts"]
+            axis.plot(date_cases_reached, k1_value, marker="X", markersize=size,
+                      c=colors[color_index])
+            axis.plot(date_cases_reached, k2_value, marker="X", markersize=size,
+                      c=colors[color_index], label="Case " + str(case))
             y_pos += 20
             color_index += 1
             case *= 10
             size += 2
 
-        ax.legend()
+        axis.legend()
 
         file_name = self.state + "_coronavirus_trend_impacts.png"
         plt.savefig(file_name)
