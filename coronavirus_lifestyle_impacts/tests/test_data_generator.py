@@ -5,7 +5,6 @@ and retrieving of the Coronavirus and PyTrends data for the
 CoronavirusLifestyleImpacts package.
 """
 
-from context import coronavirus_lifestyle_impacts
 import unittest
 from coronavirus_lifestyle_impacts.data_generator import DataGenerator
 
@@ -16,6 +15,11 @@ class UnitTests(unittest.TestCase):
     """
 
     def setUp(self):
+        """
+        Sets up the data generator test script by creating a DataGenerator
+        instance using the state of 'Washington' and the keywords 'Home
+        workouts' and 'Bars near me.'
+        """
         self.state = "Washington"
         self.keywords = ["Bars near me", "Home workouts"]
         self.data_generator = DataGenerator(self.state, self.keywords)
