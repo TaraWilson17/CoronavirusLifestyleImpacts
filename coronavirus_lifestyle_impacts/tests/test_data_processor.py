@@ -17,53 +17,61 @@ class UnitTests(unittest.TestCase):
     a series of tests validating the DataProcessor class.
     """
 
-    # def setUp(self):
-    #     self.state = "Washington"
-    #     self.keywords = ["Bars near me", "Home workouts"]
-    #     self.data_generator = DataGenerator(None)
-    #     self.data_generator.get_data(self.state, self.keywords)
+    def setUp(self):
+        self.state = "Washington"
+        self.keywords = ["Bars near me", "Home workouts"]
+        self.data_generator = DataGenerator(self.state, self.keywords)
+        self.data_generator.get_data()
+        df = [self.data_generator.covid_data, self.data_generator.trend_data]
+        self.data_processor = DataProcessor(self.data_generator.keywords, df)
+        self.data_processor.run()
 
-    # def test_covid_data_is_not_empty(self):
-    #     """
-    #     Asserts that the Coronavirus dataframe is not empty.
-    #     """
-    #     self.assertFalse(self.data_generator.covid_data.empty)
+    def test_input_data_is_not_empty(self):
+        """
+        Asserts that the initial input dataframe recieved from the data 
+        generator is not empty.
+        """
+        self.assertTrue(self.data_processor.input_data_frames)
 
-    # def test_trend_data_is_not_empty(self):
-    #     """
-    #     Asserts that the PyTrends dataframe is not empty.
-    #     """
-    #     self.assertFalse(self.data_generator.trend_data.empty)
+    def test_clean_data_is_not_empty(self):
+        """
+        Asserts that the cleaned data assigned from the clean_data method
+        is not an empty array.
+        """
+        self.assertTrue(self.data_processor.clean_data_frame)
 
-    # def test_trend_data_has_expected_columns(self):
-    #     """
-    #     Asserts that the PyTrends dataframe contains a column for each
-    #     keyword as well as a column for `isPartial` which denotes if the
-    #     data for a given week is completed or not.
-    #     """
-    #     expected_columns = self.keywords + ["isPartial"]
-    #     self.assertCountEqual(list(self.data_generator.trend_data.columns),\
-    #             expected_columns)
+    def test_agg_data_is_not_empty(self):
+        """
+        Asserts that the joined aggregated data assigned from the 
+        clean_data method is not an empty array.
+        """
+        self.assertFalse(self.data_processor.agg_data_frame.empty)
 
-    # def test_covid_data_is_for_correct_state(self):
-    #     """
-    #     Asserts that the data in the Coronavirus dataframe has been filtered
-    #     to only include data from the specified state.
-    #     """
-    #     state_col = list(self.data_generator.covid_data.AdminRegion1)
-    #     self.assertListEqual(state_col, [self.state] * len(state_col))
+    def test_agg_data_has_expected_columns(self):
+        """
+        Asserts that the PyTrends dataframe contains a column for each
+        keyword as well as a column for `isPartial` which denotes if the
+        data for a given week is completed or not.
+        """
+        expected_columns = self.keywords + ["Date", "Confirmed", 
+            "ConfirmedChange", "Deaths", "DeathsChange", "Recovered",
+            "RecoveredChange", "Country", "State"]
+        self.assertEqual(set(list(self.data_processor.agg_data_frame.columns)),\
+            set(expected_columns))
 
-    # def test_covid_data_contains_needed_columns(self):
-    #     """
-    #     Asserts that the Coronavirus dataframe contains at least the expected
-    #     columns. The needed columns are `Updated` which represents the date field,
-    #     `Deaths` which is the daily count of deaths, `Recovered` which is the
-    #     daily count of recovered patients and `AdminRegion1` which denotes the
-    #     state.
-    #     """
-    #     expected_columns = ["Updated", "Deaths", "Recovered", "AdminRegion1"]
-    #     self.assertTrue(all(x in list(self.data_generator.covid_data.columns)\
-    #             for x in expected_columns))
+    def test_no_missing_data(self):
+        """
+        Asserts that the data in the Coronavirus dataframe has been filtered
+        to only include data from the specified state.
+        """
+        self.assertFalse(self.data_processor.agg_data_frame.isnull().values.any())
+
+    def test_covid_data_is_for_correct_state(self):
+        """
+        Asserts that the data in the Coronavirus dataframe has been filtered
+        to only include data from the specified state.
+        """
+        self.assertEqual(self.state, self.data_processor.agg_data_frame['State'].values.all())
 
 if __name__ == '__main__':
     unittest.main()
