@@ -68,7 +68,7 @@ class CmdParser:
         Throws: ValueError if input arguments contains invalid state values
         """
         try:
-            self.state = args.state
+            self.state = us.states.lookup(args.state).name
             keywords_string = args.keywords.strip()
             self.keywords = keywords_string.split(",")
             for i, keyword in enumerate(self.keywords):

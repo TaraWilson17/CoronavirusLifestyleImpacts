@@ -42,5 +42,19 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(self.cmd_parser.state, "Minnesota")
         self.assertEqual(self.cmd_parser.keywords, ['Dogs', 'Cats', 'Birds'])
 
+
+    def test_validate_lowercase_state_args_pass(self):
+        """
+        Test validate_args() which normalizes state input to state abbreviation
+        and constructs keyword lists without whitespaces.
+        """
+        args = self.parser.parse_args(['--keywords', '  Dogs, Cats, Birds  ',
+                '--state', 'new york'])
+        self.cmd_parser.validate_args(args)
+        self.assertEqual(self.cmd_parser.state, "New York")
+        self.assertEqual(self.cmd_parser.keywords, ['Dogs', 'Cats', 'Birds'])
+
+
+
 if __name__ == '__main__':
     unittest.main()
