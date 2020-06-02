@@ -16,7 +16,13 @@ This project is designed to help users view how lifestyles have been influenced 
    * data_visualizer.py: helper coment that takes a time series of pre-processed data and plots it with appropriate labels and time landmarks
    * /tests: unit tests for all components
 * /docs: all specs and presentations
-   * project.png
+   * project.png: image of component specification
+   * component_specification.md: component spec document
+   * functional_requirements.md: functional requirements document
+   * tech_review.pdf: technology review presentation to compare various trending keyword Python packages
+   * final_presentation.pdf: final class presentation of software package (coming soon)
+* /examples: walkthroughs of using the package
+* /scratchwork: misc text notes and Jupyter notebooks
 
 ## Data sources
 
