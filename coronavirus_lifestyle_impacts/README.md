@@ -19,3 +19,9 @@ optional arguments:
                         the comma delimited search keyword string. Default:
                         "Bars near me, Home workouts"
 ```
+
+### Loading into PowerBI
+
+1. Download powerBIdesktop from here. https://powerbi.microsoft.com/en-us/desktop/
+2. Import the data from the Coronavirus Lifesytle Impacts into PowerBI. 
+3. Publish the dashboard on to a workspace.
