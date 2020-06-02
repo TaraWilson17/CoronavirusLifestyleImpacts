@@ -50,7 +50,7 @@ class UnitTests(unittest.TestCase):
         Tests that the data frame passed to the DataVisualizer class contains at least
         one row of data.
         """
-        self.assertFalse(self.data_visualizer.all_data.empty)
+        self.assertFalse(self.data_visualizer.data.empty)
         
     def test_keywords_get_to_visualizer(self):
         """
