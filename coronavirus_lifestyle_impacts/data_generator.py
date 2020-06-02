@@ -1,9 +1,29 @@
+"""
+Purpose:
+The following module is the DataGenerator. It is responsible for
+downloading the Coronavirus data and the Goolge Trends data
+for the given parameters. Data is output as two dataframes.
+
+Date: 5/31/2020
+
+Author: Tara Wilson
+"""
+
 from datetime import datetime, timedelta
 import pandas as pd
 import us
 from pytrends.request import TrendReq
 
 class DataGenerator:
+    """
+    The DataGenerator class is used to download the data from its sources
+    and pass it to the DataProcessor. It has the following attributes:
+
+    state: the state for which the Coronavirus and Google Trends data is gathered
+    keywords: the keyword(s) for which the the Google Trends data is gathered
+    days: the number of days for which the data should be aggregated for
+        (optional - default value is one year)
+    """
     def __init__(self, state, keywords, days=366):
         self.state = state
         self.keywords = keywords
@@ -12,6 +32,9 @@ class DataGenerator:
         self.trend_data = None
 
     def run(self):
+        """
+        Calls for the data to be aggregated.
+        """
         print("Generating data...")
         self.get_data()
 
