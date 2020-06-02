@@ -42,7 +42,7 @@ class CmdParser:
         and performs preliminary validation.
 
         Two arguments expecting from user:
-        --state: a list of US state names
+        --state: a single US state name
         --keywords: a list of lifestyle related keywords, delimited by comma
         """
         parser = argparse.ArgumentParser(description=self.CLI_DESCRIPTION)
