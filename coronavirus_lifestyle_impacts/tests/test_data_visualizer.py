@@ -44,6 +44,26 @@ class UnitTests(unittest.TestCase):
         """
         filepath = "coronavirus_lifestyle_impacts/" + self.state + "_coronavirus_trend_impacts.png"
         self.assertTrue(os.path.isfile(filepath))
+        
+    def test_data_gets_to_visualizer(self):
+        """
+        Tests that the data frame passed to the DataVisualizer class contains at least
+        one row of data.
+        """
+        self.assertFalse(self.data_visualizer.all_data.empty)
+        
+    def test_keywords_get_to_visualizer(self):
+        """
+        Tests that keyword(s) are passed correctly to the DataVisualizer class.
+        """
+        at_least_one_keyword_indicator = len(self.data_visualizer.keywords) >= 1
+        self.assertTrue(at_least_one_keyword_indicator)
+        
+    def test_state_name_gets_to_visualizer(self):
+        """
+        Tests that a state name is passed correctly to the DataVisualizer class.
+        """
+        self.assertTrue(self.data_visualizer.state)
 
 if __name__ == '__main__':
     unittest.main()
