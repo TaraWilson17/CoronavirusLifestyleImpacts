@@ -8,6 +8,15 @@ This is the final project for Data 515 at the University of Washington, Spring 2
 This project is designed to help users view how lifestyles have been influenced by the 2019 novel coronavirus using Google Trends data. The tool allows people to input geographical locations and keywords to have visualizations and summary statistics generated to summarize the impact.    
 
 ## Table of contents  
+* /coronavirus_lifestyle_impacts: all python code and unit tests
+   * coronavirus-lifestyle-impacts.py: Main script that takes state and keyword inputs and outputs csv and matplotlib visualization
+   * cmd_parser.py: helper component to parse state names and search keywords from the command line
+   * data_generator.py: helper component to download latest data from sources linked below: Bing for latest COVID-19 data and pytrends for Google Trends regarding search keywords. 
+   * data_processor.py: helper component to clean data pulled from data_generator for later use in visualization
+   * data_visualizer.py: helper coment that takes a time series of pre-processed data and plots it with appropriate labels and time landmarks
+   * /tests: unit tests for all components
+* /docs: all specs and presentations
+   * project.png
 
 ## Data sources
 
