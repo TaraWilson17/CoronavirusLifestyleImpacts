@@ -64,19 +64,20 @@ There are two datasets used in this project:
         | Trend keyword(s) | Trend keyword(s) you pass into the query, e.g. "Dogs for adoption" |
         | isPartial | Boolean indicator of whether of not the full week of data for that trend is available yet |
 
-3. Post-Processed data
-
+3. Post-Processed data  
+    * The aggregated, cleaned data fits the following format:  
+    
         | Column header | Description |
         | --- | --- |
         | Date | First day of the week for which the data represents |
-        | Confirmed | Number of COVID cases
-        | ConfirmedChange | Change in number of COVID cases
-        | Deaths | Number of COVID deaths
-        | DeathsChange | Change in number of COVID deaths
-        | Recovered | Number of COVID recoveries
-        | RecoveredChange | Change in number of COVID recoveries
-        | Country | Country chosen (default United States)
-        | State | State chosen
+        | Confirmed | Number of COVID cases |
+        | ConfirmedChange | Change in number of COVID cases |
+        | Deaths | Number of COVID deaths |
+        | DeathsChange | Change in number of COVID deaths |
+        | Recovered | Number of COVID recoveries |
+        | RecoveredChange | Change in number of COVID recoveries |
+        | Country | Country chosen (default United States) |
+        | State | State chosen |
         | Trend keyword(s) | Trend keyword(s) you pass into the query, e.g. "Dogs for adoption" |
 
 
