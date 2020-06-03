@@ -5,7 +5,7 @@
 
 This is the final project for Data 515 at the University of Washington, Spring 2020.  
 
-This project is designed to help users view how lifestyles have been influenced by the 2019 novel coronavirus using Google Trends data. The tool allows people to input geographical locations and keywords to have visualizations and summary statistics generated to summarize the impact.   
+This project is a command line tool designed to help users view how lifestyles have been influenced by the 2019 novel coronavirus using Google Trends data. The tool allows people to input geographical locations and keywords to have visualizations and summary statistics generated to summarize the impact. Running the project produces a aggregated `.csv` of data as well as a visualization to aide users in understanding the requested data.   
 
 An example of this project can be found [here](/examples/example_of_coronavirus_lifestyle_impacts_package.ipynb).
 
