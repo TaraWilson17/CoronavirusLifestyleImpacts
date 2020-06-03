@@ -28,7 +28,7 @@ class UnitTests(unittest.TestCase):
 
     def test_input_data_is_not_empty(self):
         """
-        Asserts that the initial input dataframe recieved from the dataca
+        Asserts that the initial input dataframe recieved from the data
         generator is not empty.
         """
         self.assertTrue(self.data_processor.input_data_frames)
