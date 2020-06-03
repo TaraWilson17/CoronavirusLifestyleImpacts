@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import os
 from cmd_parser import CmdParser
 from data_generator import DataGenerator
 from data_processor import DataProcessor
@@ -25,8 +26,14 @@ data_processor.run()
 print("\nProcessed COVID Data columns\n", data_processor.clean_data_frame[0].columns)
 print("\nProcessed GoogleTrends Data columns\n", data_processor.clean_data_frame[1].columns)
 agg_data_frame = data_processor.agg_data_frame
-agg_data_frame.to_csv('agg_data_frame.csv')
-print("\nAggregated cleaned dataframe saved as agg_data_frame.csv\n")
+
+curr_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '.'))
+output_dir = curr_dir + "/outputs/"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+file_path = output_dir + 'agg_data_frame.csv'
+agg_data_frame.to_csv(file_path)
+print("\nAggregated cleaned dataframe saved at {}\n".format(file_path))
 
 
 data_visualizer = DataVisualizer(data_generator.state, data_generator.keywords, data_processor.agg_data_frame)

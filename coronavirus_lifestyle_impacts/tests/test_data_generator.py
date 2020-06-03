@@ -4,7 +4,7 @@ as expected. The DataGenerator class handles the downloading
 and retrieving of the Coronavirus and PyTrends data for the
 CoronavirusLifestyleImpacts package.
 """
-
+from context import coronavirus_lifestyle_impacts
 import unittest
 from coronavirus_lifestyle_impacts.data_generator import DataGenerator
 

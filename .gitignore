@@ -130,5 +130,4 @@ dmypy.json
 .pyre/
 
 # Metadata files
-coronavirus_lifestyle_impacts/*.csv
-coronavirus_lifestyle_impacts/*.png
+coronavirus_lifestyle_impacts/outputs/
