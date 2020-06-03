@@ -5,12 +5,11 @@ and organizing of the Coronavirus and PyTrends data for the
 CoronavirusLifestyleImpacts package. This is then handed off to
 another module for data visualization.
 """
-
-from context import coronavirus_lifestyle_impacts
 import unittest
-import math
+from context import coronavirus_lifestyle_impacts
 from coronavirus_lifestyle_impacts.data_generator import DataGenerator
 from coronavirus_lifestyle_impacts.data_processor import DataProcessor
+
 
 class UnitTests(unittest.TestCase):
     """
@@ -23,8 +22,8 @@ class UnitTests(unittest.TestCase):
         self.keywords = ["Bars near me", "Home workouts"]
         self.data_generator = DataGenerator(self.state, self.keywords)
         self.data_generator.get_data()
-        df = [self.data_generator.covid_data, self.data_generator.trend_data]
-        self.data_processor = DataProcessor(self.data_generator.keywords, df)
+        data = [self.data_generator.covid_data, self.data_generator.trend_data]
+        self.data_processor = DataProcessor(self.data_generator.keywords, data)
         self.data_processor.run()
 
     def test_input_data_is_not_empty(self):
@@ -50,29 +49,35 @@ class UnitTests(unittest.TestCase):
 
     def test_agg_data_has_expected_columns(self):
         """
-        Asserts that the PyTrends dataframe contains a column for each
-        keyword as well as a column for `isPartial` which denotes if the
-        data for a given week is completed or not.
+        Asserts that the aggregated dataframe contains a column for each
+        keyword as well as a column for all the expected data from the
+        COVID data set.
         """
         expected_columns = self.keywords + ["Date", "Confirmed",
-            "ConfirmedChange", "Deaths", "DeathsChange", "Recovered",
-            "RecoveredChange", "Country", "State"]
-        self.assertEqual(set(list(self.data_processor.agg_data_frame.columns)),\
-            set(expected_columns))
+                                            "ConfirmedChange", "Deaths",
+                                            "DeathsChange", "Recovered",
+                                            "RecoveredChange", "Country",
+                                            "State"]
+        self.assertEqual(set(list(self.data_processor.agg_data_frame.columns)),
+                         set(expected_columns))
 
     def test_no_missing_data(self):
         """
-        Asserts that the data in the Coronavirus dataframe is not empty.
+        Asserts if there are any missing pieces of data in any row or column
+        in the agg data frame.
         """
-        print(self.data_processor.agg_data_frame.head())
-        self.assertFalse(self.data_processor.agg_data_frame.empty)
+        self.assertFalse(self.data_processor.agg_data_frame.isnull().
+                         values.any())
 
     def test_covid_data_is_for_correct_state(self):
         """
-        Asserts that the data in the Coronavirus dataframe has been filtered
-        to only include data from the specified state.
+        Asserts that the data in the agg dataframe
+        only includes data for a specified state.
         """
-        self.assertEqual(self.state, self.data_processor.agg_data_frame['State'].values.all())
+        self.assertEqual(self.state,
+                         self.data_processor.agg_data_frame['State'].
+                         values.all())
+
 
 if __name__ == '__main__':
     unittest.main()
