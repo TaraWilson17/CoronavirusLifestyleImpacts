@@ -10,8 +10,11 @@ Author: Tara Wilson
 """
 
 import matplotlib.pyplot as plt
+import os
 
 class DataVisualizer:
+    OUTPUT_DIR = "outputs/"
+
     """
     The DataVisualizer class is used to create a visualization of the
     data aggregated by the Data Processor. It has the following attributes:
@@ -68,5 +71,6 @@ class DataVisualizer:
 
         axis.legend()
 
+        curr_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '.'))
         file_name = self.state + "_coronavirus_trend_impacts.png"
-        plt.savefig(file_name)
+        plt.savefig(curr_dir + "/" + self.OUTPUT_DIR + file_name)

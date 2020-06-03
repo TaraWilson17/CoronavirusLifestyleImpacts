@@ -25,8 +25,9 @@ data_processor.run()
 print("\nProcessed COVID Data columns\n", data_processor.clean_data_frame[0].columns)
 print("\nProcessed GoogleTrends Data columns\n", data_processor.clean_data_frame[1].columns)
 agg_data_frame = data_processor.agg_data_frame
-agg_data_frame.to_csv('agg_data_frame.csv')
-print("\nAggregated cleaned dataframe saved as agg_data_frame.csv\n")
+data_file = 'outputs/agg_data_frame.csv'
+agg_data_frame.to_csv(data_file)
+print("\nAggregated cleaned dataframe saved at {}\n".format(data_file))
 
 
 data_visualizer = DataVisualizer(data_generator.state, data_generator.keywords, data_processor.agg_data_frame)
