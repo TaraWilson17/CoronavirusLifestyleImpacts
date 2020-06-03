@@ -54,13 +54,17 @@ class DataVisualizer:
         case = 1
         color_index = 0
         y_pos = 10
-        size = 10
+        size = 8
         while case <= max(self.data.Confirmed):
             date_cases_reached = min(self.data[self.data.Confirmed >= case]["Date"])
-            for keyword in self.keywords:
+            for i, keyword in enumerate(self.keywords):
                 keyword_value = self.data[self.data["Date"] == date_cases_reached][keyword]
-                axis.plot(date_cases_reached, keyword_value, marker="X", markersize=size,
-                          c=colors[color_index])
+                if i == 0:
+                    axis.plot(date_cases_reached, keyword_value, marker="X", markersize=size,
+                              c=colors[color_index], label="Case #" + str(case))
+                else:
+                    axis.plot(date_cases_reached, keyword_value, marker="X", markersize=size,
+                              c=colors[color_index])
             y_pos += 20
             color_index += 1
             case *= 10
