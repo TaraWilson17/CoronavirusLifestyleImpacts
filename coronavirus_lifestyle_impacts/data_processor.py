@@ -123,3 +123,4 @@ class DataProcessor:
         agg['State'].fillna(method='bfill', inplace=True)
 
         self.agg_data_frame = agg
+        
