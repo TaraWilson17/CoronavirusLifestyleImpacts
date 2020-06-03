@@ -2,9 +2,9 @@ import setuptools
 
 setuptools.setup(
     name="CoronavirusLifestyleImpacts",
-    version="0.0.1",
-    author="Cool Kids",
-    author_email="cool_kids@uw.edu",
+    version="1.0.0",
+    author="David Wei, Lauren Heintz, Ratna Chembrolu, Tara Wilson, Zack Garcia",
+    author_email="wwtara@uw.edu, heintzl@uw.edu, ratna@uw.edu, garciz@uw.edu, ywei1@uw.edu",
     description="A cool Covid-19 analysis package",
     long_description_content_type="text/markdown",
     url="https://github.com/TaraWilson17/CoronavirusLifestyleImpacts",
