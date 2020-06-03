@@ -15,35 +15,38 @@ Users of this tool are anyone who is interested about the impacts of coronavirus
 
 ## Data Sources
 
-* [COVID-19 Data](https://ourworldindata.org/coronavirus)
+* [COVID-19 Data](www.bing.com/covid))
 * [Google Trends Data](https://trends.google.com/trends/?geo=US)
 
 ## Use Cases
 
-**Use Case 1:** User wants to understand a change in lifestyle trends relative to the onset of the COVID-19 pandemic.
+**Use Case 1:** User wants to understand a change in the popularity of home sourdough kits relative to the onset of the COVID-19 pandemic.
 
 > Expected interactions:
-* User: Inputs keyword of google trend of interest
-* User: Specifies what type of COVID data is desired (i.e. infections, deaths, recovered cases)
+* User: Inputs a US state - 'California'
+* User: Inputs google trend of interest - 'sourdough bread starter'
 * Tool: Joins worldwide google trend data with worldwide COVID data.
 * Tool: Data visualization generated for user(s)
+* User: Can inspect data in PowerBI using output CSV if desired.
 
-**Use Case 2:** User wants to compare multiple changes in lifestyle trends relative to the onset of the COVID-19 pandemic.
+**Use Case 2:** User wants to compare search frequency for 'bars near me' to 'home workouts' relative to the onset of the COVID-19 pandemic.
 
 > Expected interactions:
-* User: Inputs keywords (up to 5 as a list) of google trends of interest
-* User: Specifies what type of COVID data is desired (i.e. infections, deaths, recovered cases)
+* User: Inputs a US state - 'Arkansas'
+* User: Inputs keywords (up to 5 as a list) of google trends of interest - ['bars near me', 'home workouts']
 * Tool: Joins worldwide google trend data with worldwide COVID data
 * Tool: Data visualization(s) generated for user
+* User: Can inspect data in PowerBI using output CSV if desired.
 
-**Use Case 3:** User wants to understand a change in lifestyle trends relative to the onset of the COVID-19 pandemic in their region.
+
+**Use Case 3:** User wants to understand a change in the number of puppy breeder searches relative to the onset of the COVID-19 pandemic in their region.
 
 > Expected interactions:
-* User: Inputs keywords (up to 5 as a list) of google trends of interest
-* User: Specifies what type of COVID data is desired (i.e. infections, deaths, recovered cases)
-* User: Specifies what region (country) they would like COVID data for
-* User: Specifies what region (country) they would like google tren data for
+* User: Inputs a US state - 'Washington'
+* User: Inputs keywords (up to 5 as a list) of google trends of interest 'puppy breeders'
 * Tool: Joins worldwide google trend data with worldwide COVID data
 * Tool: Data visualization generated for user(s)
+* User: Can inspect data in PowerBI using output CSV if desired.
+
 
 
