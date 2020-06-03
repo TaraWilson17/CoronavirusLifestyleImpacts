@@ -72,5 +72,8 @@ class DataVisualizer:
         axis.legend()
 
         curr_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '.'))
+        output_dir = curr_dir + "/" + self.OUTPUT_DIR
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
         file_name = self.state + "_coronavirus_trend_impacts.png"
-        plt.savefig(curr_dir + "/" + self.OUTPUT_DIR + file_name)
+        plt.savefig(output_dir + file_name)

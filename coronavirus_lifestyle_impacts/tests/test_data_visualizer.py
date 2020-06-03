@@ -44,7 +44,8 @@ class UnitTests(unittest.TestCase):
         visualization in the intended folder.
         """
         curr_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
-        filepath = curr_dir + "/outputs/" + self.state + "_coronavirus_trend_impacts.png"
+        output_dir = curr_dir + "/outputs/"
+        filepath = output_dir + self.state + "_coronavirus_trend_impacts.png"
         self.assertTrue(os.path.isfile(filepath))
 
     def test_data_gets_to_visualizer(self):
