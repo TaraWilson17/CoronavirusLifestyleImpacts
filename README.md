@@ -12,8 +12,10 @@ This project is a command line tool designed to help users view how lifestyles h
 At current repository root, run the following script:
 ```
 ./coronavirus_lifestyle_impacts.py [-h] [-s STATE] [-k KEYWORDS]
+```
 
 Example:
+```
 ./coronavirus_lifestyle_impacts.py --state Washington --keyword "Bars near me, Home workouts"
 ```
 

@@ -17,12 +17,6 @@ install:
     - pip install coveralls
     - pip install -r requirements.txt
 
-
-# Uncomment me to add preprocessing steps
-# a list of commands to run before the main script
-#before_script:
-#    - "do something"
-
 # the actual commands to run
 script:
     # This step installs the package using setup.py
