@@ -37,7 +37,6 @@ class DataProcessor:
         This function executes all the other functions in this module to
         accomplish the data cleaning steps.
         """
-        print("Processing data...")
         self.clean_data(self.input_data_frames)
         self.aggregate_data()
 

@@ -35,7 +35,6 @@ class DataGenerator:
         """
         Calls for the data to be aggregated.
         """
-        print("Generating data...")
         self.get_data()
 
     def get_data(self):
