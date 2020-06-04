@@ -1,3 +1,14 @@
+"""
+This file runs the Coronavirus Lifestyle Impacts project. It takes in user
+input through the command line by leveraging the CmdParser class to abstract
+the state name and keywords that the project is being run for. The file then
+goes through the three steps of the project: data generating, data processing
+and data visualizing. There are seperate classes for each of these steps imported
+from other files. This file prints out statements along the way as the project
+progresses as well as prints the paths to where the output visualization
+and aggregated data are saved.
+"""
+
 import sys
 import os
 from cmd_parser import CmdParser
@@ -5,33 +16,34 @@ from data_generator import DataGenerator
 from data_processor import DataProcessor
 from data_visualizer import DataVisualizer
 
-cmd_parser = CmdParser()
-cmd_parser.parse(sys.argv[1:])
-print("Using input: state={}, keywords={}".format(cmd_parser.state, cmd_parser.keywords))
+CMD_PARSER = CmdParser()
+CMD_PARSER.parse(sys.argv[1:])
+print("Using input: state={}, keywords={}".format(CMD_PARSER.state, CMD_PARSER.keywords))
 
-data_generator = DataGenerator(cmd_parser.state, cmd_parser.keywords)
+DATA_GENERATOR = DataGenerator(CMD_PARSER.state, CMD_PARSER.keywords)
 print("\n=========Generating data========")
-data_generator.run()
-print(data_generator.covid_data.head(5))
-print(data_generator.trend_data.head(5))
-data_frames = [data_generator.covid_data, data_generator.trend_data]
+DATA_GENERATOR.run()
+print(DATA_GENERATOR.covid_data.head(5))
+print(DATA_GENERATOR.trend_data.head(5))
 
 print("\n=========Processing data========")
-data_processor = DataProcessor(data_generator.keywords, data_frames)
-data_processor.run()
-print("\nProcessed COVID Data columns\n", data_processor.clean_data_frame[0].columns)
-print("\nProcessed GoogleTrends Data columns\n", data_processor.clean_data_frame[1].columns)
-agg_data_frame = data_processor.agg_data_frame
-curr_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '.'))
-output_dir = curr_dir + "/outputs/"
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-csv_file_path = output_dir + data_generator.state + "_agg_data_frame.csv"
-agg_data_frame.to_csv(csv_file_path)
-print("\nAggregated cleaned dataframe saved at {}\n".format(csv_file_path))
+GENERATED_DATA_FRAMES = [DATA_GENERATOR.covid_data, DATA_GENERATOR.trend_data]
+DATA_PROCESSOR = DataProcessor(DATA_GENERATOR.keywords, GENERATED_DATA_FRAMES)
+DATA_PROCESSOR.run()
+print("\nProcessed COVID Data columns\n", DATA_PROCESSOR.clean_data_frame[0].columns)
+print("\nProcessed GoogleTrends Data columns\n", DATA_PROCESSOR.clean_data_frame[1].columns)
+AGGREGATED_DATA = DATA_PROCESSOR.agg_data_frame
+CURR_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '.'))
+OUTPUT_DIR = CURR_DIR + "/outputs/"
+if not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
+CSV_FILE_PATH = OUTPUT_DIR + DATA_GENERATOR.state + "_agg_data_frame.csv"
+AGGREGATED_DATA.to_csv(CSV_FILE_PATH)
+print("\nAggregated cleaned dataframe saved at {}\n".format(CSV_FILE_PATH))
 
 print("\n=========Visualizing data========")
-data_visualizer = DataVisualizer(data_generator.state, data_generator.keywords, data_processor.agg_data_frame)
-data_visualizer.show()
-img_file_path = output_dir + data_generator.state + "_coronavirus_trend_impacts.png"
-print("\nVisualization saved at {}\n".format(img_file_path))
+DATA_VISUALIZER = DataVisualizer(DATA_GENERATOR.state, DATA_GENERATOR.keywords,
+                                 DATA_PROCESSOR.agg_data_frame)
+DATA_VISUALIZER.show()
+IMG_FILE_PATH = OUTPUT_DIR + DATA_GENERATOR.state + "_coronavirus_trend_impacts.png"
+print("\nVisualization saved at {}\n".format(IMG_FILE_PATH))
