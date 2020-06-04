@@ -2,13 +2,13 @@
 
 At current package root, run the following executable:
 ```
-./coronavirus-lifestyle-impacts.py [-h] [-s STATE] [-k KEYWORDS]
+./coronavirus_lifestyle_impacts.py [-h] [-s STATE] [-k KEYWORDS]
 ```
 
 ### Usage
 ```
-$ ./coronavirus-lifestyle-impacts.py --help
-usage: coronavirus-lifestyle-impacts.py [-h] [-s STATE] [-k KEYWORDS]
+$ ./coronavirus_lifestyle_impacts.py --help
+usage: coronavirus_lifestyle_impacts.py [-h] [-s STATE] [-k KEYWORDS]
 Coronavirus Lifestyle Impacts CLI
 optional arguments:
   -h, --help            show this help message and exit
@@ -19,3 +19,9 @@ optional arguments:
                         the comma delimited search keyword string. Default:
                         "Bars near me, Home workouts"
 ```
+
+### Loading into PowerBI
+
+1. Download powerBIdesktop from here. https://powerbi.microsoft.com/en-us/desktop/
+2. Import the data from the Coronavirus Lifesytle Impacts into PowerBI. 
+3. Publish the dashboard on to a workspace.

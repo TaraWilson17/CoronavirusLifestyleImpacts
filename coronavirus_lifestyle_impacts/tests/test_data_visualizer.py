@@ -5,8 +5,9 @@ of the Coronavirus and PyTrends data for the
 CoronavirusLifestyleImpacts package.
 """
 
+from context import coronavirus_lifestyle_impacts
 import unittest
-import os.path
+import os
 from coronavirus_lifestyle_impacts.data_generator import DataGenerator
 from coronavirus_lifestyle_impacts.data_processor import DataProcessor
 from coronavirus_lifestyle_impacts.data_visualizer import DataVisualizer
@@ -42,23 +43,25 @@ class UnitTests(unittest.TestCase):
         Tests that the DataVisualizer class successfully creates an output
         visualization in the intended folder.
         """
-        filepath = "coronavirus_lifestyle_impacts/" + self.state + "_coronavirus_trend_impacts.png"
+        curr_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
+        output_dir = curr_dir + "/outputs/"
+        filepath = output_dir + self.state + "_coronavirus_trend_impacts.png"
         self.assertTrue(os.path.isfile(filepath))
-        
+
     def test_data_gets_to_visualizer(self):
         """
         Tests that the data frame passed to the DataVisualizer class contains at least
         one row of data.
         """
         self.assertFalse(self.data_visualizer.data.empty)
-        
+
     def test_keywords_get_to_visualizer(self):
         """
         Tests that keyword(s) are passed correctly to the DataVisualizer class.
         """
         at_least_one_keyword_indicator = len(self.data_visualizer.keywords) >= 1
         self.assertTrue(at_least_one_keyword_indicator)
-        
+
     def test_state_name_gets_to_visualizer(self):
         """
         Tests that a state name is passed correctly to the DataVisualizer class.

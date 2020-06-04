@@ -63,6 +63,7 @@ class DataProcessor:
         covid = covid.rename(columns={'Updated': 'Date',
                                       'Country_Region': 'Country',
                                       'AdminRegion1': 'State'})
+
         covid['Date'] = pd.to_datetime(covid['Date'])
         covid = covid.reset_index(drop=True)
         covid = covid.set_index(['Date'], drop=True)
@@ -118,8 +119,12 @@ class DataProcessor:
         agg.iloc[0, agg.columns.get_loc('RecoveredChange')] = 0
         agg['RecoveredChange'].fillna(method='ffill', inplace=True)
 
-        # Backfill State and Country data
+        # Forward and backfill State and Country data
+        # This is to ensure all cells are filled with valid country and state
+        agg['Country'].fillna(method='ffill', inplace=True)
         agg['Country'].fillna(method='bfill', inplace=True)
+        agg['State'].fillna(method='ffill', inplace=True)
         agg['State'].fillna(method='bfill', inplace=True)
 
         self.agg_data_frame = agg
+        

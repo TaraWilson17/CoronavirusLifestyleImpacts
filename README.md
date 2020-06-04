@@ -5,9 +5,26 @@
 
 This is the final project for Data 515 at the University of Washington, Spring 2020.  
 
-This project is designed to help users view how lifestyles have been influenced by the 2019 novel coronavirus using Google Trends data. The tool allows people to input geographical locations and keywords to have visualizations and summary statistics generated to summarize the impact.    
+This project is a command line tool designed to help users view how lifestyles have been influenced by the 2019 novel coronavirus using Google Trends data. The tool allows people to input geographical locations and keywords to have visualizations and summary statistics generated to summarize the impact. Running the project produces a aggregated `.csv` of data as well as a visualization to aide users in understanding the requested data.   
+
+An example of this project can be found [here](/examples/example_of_coronavirus_lifestyle_impacts_package.ipynb).
 
 ## Table of contents  
+* /coronavirus_lifestyle_impacts: all python code and unit tests
+   * coronavirus-lifestyle-impacts.py: Main script that takes state and keyword inputs and outputs csv and matplotlib visualization
+   * cmd_parser.py: helper component to parse state names and search keywords from the command line
+   * data_generator.py: helper component to download latest data from sources linked below: Bing for latest COVID-19 data and pytrends for Google Trends regarding search keywords. 
+   * data_processor.py: helper component to clean data pulled from data_generator for later use in visualization
+   * data_visualizer.py: helper coment that takes a time series of pre-processed data and plots it with appropriate labels and time landmarks
+   * /tests: unit tests for all components
+* /docs: all specs and presentations
+   * project.png: image of component specification
+   * component_specification.md: component spec document
+   * functional_requirements.md: functional requirements document
+   * tech_review.pdf: technology review presentation to compare various trending keyword Python packages
+   * final_presentation.pdf: final class presentation of software package (coming soon)
+* /examples: walkthroughs of using the package
+* /scratchwork: misc text notes and Jupyter notebooks
 
 ## Data sources
 
@@ -46,6 +63,23 @@ There are two datasets used in this project:
         | date | First day of the week for which the data represents |
         | Trend keyword(s) | Trend keyword(s) you pass into the query, e.g. "Dogs for adoption" |
         | isPartial | Boolean indicator of whether of not the full week of data for that trend is available yet |
+
+3. Post-Processed data  
+    * The aggregated, cleaned data fits the following format:  
+    
+        | Column header | Description |
+        | --- | --- |
+        | Date | First day of the week for which the data represents |
+        | Confirmed | Number of COVID cases |
+        | ConfirmedChange | Change in number of COVID cases |
+        | Deaths | Number of COVID deaths |
+        | DeathsChange | Change in number of COVID deaths |
+        | Recovered | Number of COVID recoveries |
+        | RecoveredChange | Change in number of COVID recoveries |
+        | Country | Country chosen (default United States) |
+        | State | State chosen |
+        | Trend keyword(s) | Trend keyword(s) you pass into the query, e.g. "Dogs for adoption" |
+
 
 ## Team Members  
 * David Wei  

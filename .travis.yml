@@ -25,10 +25,12 @@ install:
 
 # the actual commands to run
 script:
+    # This step installs the package using setup.py
+    - python3 setup.py install 
     # This step runs all unit tests and produce test results
     - pytest coronavirus_lifestyle_impacts/tests/
     # This step runs coverage on all the code executed by the main script
-    - coverage run coronavirus_lifestyle_impacts/coronavirus-lifestyle-impacts.py
+    - coverage run coronavirus_lifestyle_impacts/coronavirus_lifestyle_impacts.py
 
 after_success:
     - coverage report
