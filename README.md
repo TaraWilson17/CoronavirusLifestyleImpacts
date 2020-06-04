@@ -24,7 +24,6 @@ An example of this project can be found [here](/examples/example_of_coronavirus_
    * tech_review.pdf: technology review presentation to compare various trending keyword Python packages
    * final_presentation.pdf: final class presentation of software package (coming soon)
 * /examples: walkthroughs of using the package
-* /scratchwork: misc text notes and Jupyter notebooks
 
 ## Data sources
 
