@@ -33,7 +33,6 @@ class DataVisualizer:
         """
         Calls for the visualization to be created.
         """
-        print("Rendering visualization...")
         self.draw_graph()
 
     def draw_graph(self):
