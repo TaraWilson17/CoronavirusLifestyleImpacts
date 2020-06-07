@@ -9,12 +9,10 @@ Date: 5/31/2020
 Author: Tara Wilson
 """
 
-import matplotlib.pyplot as plt
 import os
+import matplotlib.pyplot as plt
 
 class DataVisualizer:
-    OUTPUT_DIR = "outputs/"
-
     """
     The DataVisualizer class is used to create a visualization of the
     data aggregated by the Data Processor. It has the following attributes:
@@ -24,6 +22,8 @@ class DataVisualizer:
     all_data: a dataframe containing all of the Coronavirus and Google Trends data
         for the specified state and keywords
     """
+    OUTPUT_DIR = "outputs/"
+
     def __init__(self, state, keywords, all_data):
         self.state = state
         self.keywords = keywords
