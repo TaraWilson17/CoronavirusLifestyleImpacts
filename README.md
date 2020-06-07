@@ -34,7 +34,7 @@ A detail example of this project can be found [here](/examples/example_of_corona
    * component_specification.md: component spec document
    * functional_requirements.md: functional requirements document
    * tech_review.pdf: technology review presentation to compare various trending keyword Python packages
-   * final_presentation.pdf: final class presentation of software package (coming soon)
+   * Lifestyle Impacts of COVID-19_ Project Presentation.pdf: final class presentation of software package (coming soon)
 * /examples: walkthroughs of using the package
 
 ## Data sources
