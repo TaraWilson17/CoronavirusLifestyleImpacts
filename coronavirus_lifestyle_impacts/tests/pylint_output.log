@@ -1,0 +1,11 @@
+************* Module coronavirus_lifestyle_impacts.coronavirus_lifestyle_impacts
+C:\Users\ratnac\Documents\GitHub\CoronavirusLifestyleImpacts\coronavirus_lifestyle_impacts\coronavirus_lifestyle_impacts.py:14:0: E0401: Unable to import 'cmd_parser' (import-error)
+C:\Users\ratnac\Documents\GitHub\CoronavirusLifestyleImpacts\coronavirus_lifestyle_impacts\coronavirus_lifestyle_impacts.py:15:0: E0401: Unable to import 'data_generator' (import-error)
+C:\Users\ratnac\Documents\GitHub\CoronavirusLifestyleImpacts\coronavirus_lifestyle_impacts\coronavirus_lifestyle_impacts.py:16:0: E0401: Unable to import 'data_processor' (import-error)
+C:\Users\ratnac\Documents\GitHub\CoronavirusLifestyleImpacts\coronavirus_lifestyle_impacts\coronavirus_lifestyle_impacts.py:17:0: E0401: Unable to import 'data_visualizer' (import-error)
+************* Module coronavirus_lifestyle_impacts.data_visualizer
+C:\Users\ratnac\Documents\GitHub\CoronavirusLifestyleImpacts\coronavirus_lifestyle_impacts\data_visualizer.py:46:8: W0612: Unused variable 'fig' (unused-variable)
+
+------------------------------------------------------------------
+Your code has been rated at 8.82/10 (previous run: 8.76/10, +0.06)
+
