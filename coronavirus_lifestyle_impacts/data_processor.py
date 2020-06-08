@@ -26,7 +26,7 @@ class DataProcessor:
                     sets joined on the date. The data is cleaned then to
                     address gaps that arise from the data join
     """
-    def __init__(self, args, data_frames= None):
+    def __init__(self, args, data_frames=None):
         data_frames = data_frames or []
         self.args = args
         self.input_data_frames = data_frames
