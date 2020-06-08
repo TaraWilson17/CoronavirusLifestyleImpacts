@@ -46,11 +46,11 @@ class CmdParser:
         --keywords: a list of lifestyle related keywords, delimited by comma
         """
         parser = argparse.ArgumentParser(description=self.CLI_DESCRIPTION)
-        parser.add_argument("-s", "--" + self.STATE, action="store", default="Washington",
+        parser.add_argument("-s", "--" + self.STATE, action="store", default="Washington",\
             required=False, help="the US state to pull the data from. Can take\
                     either full name and abbreviation. Default: \"Washington\"")
-        parser.add_argument("-k", "--" + self.KEYWORDS, action="store",
-                default=self.DEFAULT_KEYWORDS, required=False,
+        parser.add_argument("-k", "--" + self.KEYWORDS, action="store",\
+                default=self.DEFAULT_KEYWORDS, required=False,\
                 help="the comma delimited search keyword string. Default: \
                         \"Bars near me, Home workouts\" ")
         return parser
