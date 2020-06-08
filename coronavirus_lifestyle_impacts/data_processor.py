@@ -26,7 +26,8 @@ class DataProcessor:
                     sets joined on the date. The data is cleaned then to
                     address gaps that arise from the data join
     """
-    def __init__(self, args, data_frames=[]):
+    def __init__(self, args, data_frames= None):
+        data_frames = data_frames or []
         self.args = args
         self.input_data_frames = data_frames
         self.clean_data_frame = None
@@ -40,7 +41,7 @@ class DataProcessor:
         self.clean_data(self.input_data_frames)
         self.aggregate_data()
 
-    def clean_data(self, data_frames=[]):
+    def clean_data(self, data_frames=None):
         """
         This function does some basic clean up of both the COVID data
         and Google Trends data. For instance, renaming columns
@@ -53,6 +54,7 @@ class DataProcessor:
             with the first being covid data and the second being trend data
         """
         # Variable Assignment
+        data_frames = data_frames or []
         covid = data_frames[0]
         trend = data_frames[1]
 
