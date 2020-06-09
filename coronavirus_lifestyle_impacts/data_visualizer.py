@@ -43,7 +43,7 @@ class DataVisualizer:
         is saved in the coronavirus_lifestyle_impacts folder with the state name
         in the image title.
         """
-        fig, axis = plt.subplots(figsize=(12, 8))
+        _, axis = plt.subplots(figsize=(12, 8))
         plt.title("Keyword Search Comparison in " + self.state)
         axis.set_ylabel("Relative Popularity")
         axis.tick_params(axis='y')
@@ -78,5 +78,4 @@ class DataVisualizer:
         output_dir = curr_dir + "/" + self.OUTPUT_DIR
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
-        file_name = self.state + "_coronavirus_trend_impacts.png"
-        plt.savefig(output_dir + file_name)
+        plt.savefig(output_dir + self.state + "_coronavirus_trend_impacts.png")

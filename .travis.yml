@@ -25,6 +25,8 @@ script:
     - pytest coronavirus_lifestyle_impacts/tests/
     # This step runs coverage on all the code executed by the main script
     - coverage run coronavirus_lifestyle_impacts/coronavirus_lifestyle_impacts.py
+    # This step generates the pylint score for our package
+    - pylint coronavirus_lifestyle_impacts
 
 after_success:
     - coverage report
