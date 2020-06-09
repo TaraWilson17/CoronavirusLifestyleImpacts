@@ -37,37 +37,74 @@ down to the downstream services. It is lightweight and should always return a re
 There are two public Python command line parsers to use: [ArgParser](https://docs.python.org/3/library/argparse.html) and [Click](https://click.palletsprojects.com/en/7.x/). Click is preferred but the decision has not been made yet.
 
 For example:
-- user input: `$: covid19-impacts --country USA --state WA --time-period 1month --coivd19 ['deaths'] --trend ['masks', 'hand sanitizer']`
+- user input: `$: covid19-impacts --state "Washington" --keywords "masks, hand sanitizer"
 - outputs: all user input data returned in a json string
 ```
 {
-  "user": "<UUID>",
-  "country": "USA",
-  "state": "WA",
-  "start_time": "<timestamp>",
-  "end_time": "<timestamp>",
-  "covid19": ["deaths"],
-  "trend": ["masks", "hand sanitizer"]
+  "state": "Washington",
+  "keywords": ['masks', 'hand sanitizer']
 }
 ```
-
-Detailed list of commands and whether it's required or optional is pending design.
 
 ###  2. DataGenerator
 A DataGenerator is responsible of taking the input Json blob and providing datasets in Pandas DataFrame format.
 The DataGenerator is designed to have two sub-components: a `query_builder.py` module and a `query_executor.py`.
 - Input: Inputs to this module are state and keywords for which the user would like the google trends for.
-- Output: Data specific to corona virus infections & fatalities by state and Search trends for a given keyword.
+- Output: Data specific to corona virus infections & fatalities by state and Search trends for a given keyword.  
+
+* COVID data:  
+  
+    |Column header | Description |
+    |---|---|
+    |ID | Unique identifier |
+    |Updated| Datetime in UTC |
+    |Confirmed | Confirmed case count for the region |
+    |ConfirmedChange| Change of confirmed case count from the previous day |
+    |Deaths| Death case count for the region |
+    |DeathsChange| Change of death count from the previous day |
+    |Recovered| Recovered count for the region |
+    |RecoveredChange| Change of recovered case counts from the previous day |
+    |Latitude| Latitude of the centroid of the region |
+    |Longitude| Longitude of the centroid of the region |
+    |ISO2| 2 letter country code identifier |
+    |ISO3| 3 letter country code identifier |
+    |Country_Region| Country/region |
+    |AdminRegion1| Region within Country_region |
+    |AdminRegion2| Region within AdminRegion1 |  
+
+* PyTrends Data:  
+
+    | Column header | Description |
+    | --- | --- |
+    | date | First day of the week for which the data represents |
+    | Trend keyword(s) | Trend keyword(s) you pass into the query, e.g. "Dogs for adoption" |
+    | isPartial | Boolean indicator of whether of not the full week of data for that trend is available yet |  
+
 
 ### 3. DataProcessor:
 A DataProcessor is responsible of taking the provided data frame, validating the results, and performing aggregation. The output
 is a structured Pandas DataFrame which can be used by the DataVisualizer.
-- Input: Dataframes produced by DataGenerator.
+- Input: Dataframes produced by DataGenerator, keywords list.
 - Output: Single dataframe containing all the data from both data sets joined on the date
+
+* The Aggregated Data:  
+ 
+    | Column header | Description |
+    | --- | --- |
+    | Date | First day of the week for which the data represents |
+    | Confirmed | Number of COVID cases |
+    | ConfirmedChange | Change in number of COVID cases |
+    | Deaths | Number of COVID deaths |
+    | DeathsChange | Change in number of COVID deaths |
+    | Recovered | Number of COVID recoveries |
+    | RecoveredChange | Change in number of COVID recoveries |
+    | Country | Country chosen (default United States) |
+    | State | State chosen |
+        | Trend keyword(s) | Trend keyword(s) you pass into the query, e.g. "Dogs for adoption" |
 
 ### 4. DataVisualizer
 A DataVisualizer is responsible of rendering the final graphs for end-user by taking the input data from DataProcessor.
-- Input: Aggregated data from DataProcessor.
+- Input: Aggregated data from DataProcessor, keywords, state.
 - Output: Graphs to end user.
 
 ## Test
@@ -75,17 +112,19 @@ For each component, we will have a validator to unit test its functionality. We 
 integration test will be part of the GitHub build process and shown as the build badge at the front page of the repo.
 
 ## Sample DataFlow and UseCase
-1. User will input the state and the lifestyle trend they would like to observe the shifts. These lifestyle trends are going to be pre-selected.
-2. User also gets to choose if they want to look at a specific state or for the country (USA).
-3. Once they get the visualization they can, make changes to make the graphs interactive
+1. User will input the state and the lifestyle trend they would like to observe the shifts. There is a max of 5 keywords that can be chosen for the trend tracking. 
+2. User also gets to choose what specific state they want to look at.
+3. Once they get the visualization they can, they can also download a CSV which has additional data and play around with the information on their own.
 
 ## Work items and Owners
 - Refine use case and build test input [team]
 - Design review with team [team]
 - Implementation in parallel and unit test
-  - CmdParser []
-  - DataGenerator []
-  - DataProcessor []
-  - DataVisualizer []
-- CI/CD: End-to-end test and release pipeline []
-- Presentation
+  - CmdParser [David]
+  - DataGenerator [Tara]
+  - DataProcessor [Lauren]
+  - DataVisualizer [Tara]
+- CI/CD: End-to-end test and release pipeline [David]
+- Presentation [Zack]
+- PowerBi [Ratna]
+- Pylint & Pep8 [Ratna]
