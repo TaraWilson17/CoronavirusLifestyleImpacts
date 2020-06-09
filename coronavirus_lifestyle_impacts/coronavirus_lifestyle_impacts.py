@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 This file runs the Coronavirus Lifestyle Impacts project. It takes in user
 input through the command line by leveraging the CmdParser class to abstract
