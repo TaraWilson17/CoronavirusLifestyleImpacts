@@ -5,7 +5,7 @@
 
 This is the final project for Data 515 at the University of Washington, Spring 2020.  
 
-This project is a command line tool designed to help users view how lifestyles have been influenced by the 2019 novel coronavirus using Google Trends data. The tool allows people to input geographical locations and keywords to have visualizations and summary statistics generated to summarize the impact. Running the project produces a aggregated `.csv` of data as well as a visualization to aide users in understanding the requested data.   
+This project is a command line tool designed to help users view how lifestyles have been influenced by the 2019 Novel Coronavirus using Google Trends data. The tool allows people to input geographical locations and keywords to have visualizations and summary statistics generated to summarize the impact. Running the project produces a aggregated `.csv` of data as well as a visualization to aide users in understanding the requested data.   
 
 ## How to run
 
@@ -19,7 +19,7 @@ Example:
 ./coronavirus_lifestyle_impacts.py --state Washington --keyword "Bars near me, Home workouts"
 ```
 
-A detail example of this project can be found [here](/examples/example_of_coronavirus_lifestyle_impacts_package.ipynb).
+A detailed example of this project can be found [here](/examples/example_of_coronavirus_lifestyle_impacts_package.ipynb).
 
 ## Table of contents  
 * /coronavirus_lifestyle_impacts: all python code and unit tests
@@ -34,7 +34,7 @@ A detail example of this project can be found [here](/examples/example_of_corona
    * component_specification.md: component spec document
    * functional_requirements.md: functional requirements document
    * tech_review.pdf: technology review presentation to compare various trending keyword Python packages
-   * Lifestyle Impacts of COVID-19_ Project Presentation.pdf: final class presentation of software package (coming soon)
+   * final_presentation.pdf: final class presentation of software package
 * /examples: walkthroughs of using the package
 
 ## Data sources
