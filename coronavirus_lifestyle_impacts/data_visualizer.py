@@ -66,7 +66,7 @@ class DataVisualizer:
                               c=colors[color_index], label="Case #" + str(case))
                 else:
                     axis.plot(date_cases_reached, keyword_value, marker="X", markersize=size,
-                              c=colors[color_index])
+                              c=colors[color_index], label="_nolegend_")
             y_pos += 20
             color_index += 1
             case *= 10
